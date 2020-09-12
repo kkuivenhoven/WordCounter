@@ -1,0 +1,27 @@
+
+<h1> Results Page </h1>
+
+<b>Total words</b>: <%= @total_words %>
+
+
+<form action="">
+	<input id="alphButton" type="radio" name="data_view" value="alpha">Alphabetical&nbsp;
+	<input id="numButton" type="radio" name="data_view" value="numerical">Numerical&nbsp;
+</form>
+
+
+<div id="divOne">
+	Value:<br>
+	<% @value_sort.each do |word, value| %>
+		<%= word %>: <%= value %><br>
+	<% end %>
+</div>
+
+
+<div id="divTwo">
+	Alpha:<br>
+	<% @word_sort.each do |word, value| %>
+		<%= word %>: <%= value %><br>
+	<% end %>
+</div>
+
