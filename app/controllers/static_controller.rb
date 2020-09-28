@@ -30,6 +30,33 @@ class StaticController < ApplicationController
 		@value_sort = @dictionary.sort_by { |word, count| count }
 		@value_sort = Hash[@value_sort.to_a.reverse].to_h
 		@word_sort = @dictionary.sort_by { |word, count| word }
+		@words_count_meaning = Hash.new
+		@word_sort.each do |word, count|
+			dict_results = DictionaryLookup::Base.define(word)
+			count_meaning = Array.new
+			count_meaning << count
+			count_meaning << dict_results
+			@words_count_meaning[word] = count_meaning
+		end
+
+		@value_dict_sort = Hash.new
+		@value_sort.each do |word, count| 
+			dict_results = DictionaryLookup::Base.define(word)
+			count_meaning = Array.new
+			count_meaning << count
+			count_meaning << dict_results
+			@value_dict_sort[word] = count_meaning
+		end
+
+		@word_dict_sort = Hash.new
+		@word_sort.each do |word, count| 
+			dict_results = DictionaryLookup::Base.define(word)
+			count_meaning = Array.new
+			count_meaning << count
+			count_meaning << dict_results
+			@word_dict_sort[word] = count_meaning
+		end
+
 	end
 
 end

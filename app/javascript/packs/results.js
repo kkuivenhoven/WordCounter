@@ -16,7 +16,12 @@ document.addEventListener("DOMContentLoaded", function() {
 		numDiv.style.display = "block"; 
 	});	
 
+
 });
 
 
+window.onload = function() {
+	var numDiv = document.getElementById("divOne");
+	numDiv.style.display = "none"; 
+};
 
