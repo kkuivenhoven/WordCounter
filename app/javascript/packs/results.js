@@ -6,9 +6,11 @@ document.addEventListener("DOMContentLoaded", function() {
 	numDiv.style.display = "none"; 
 
 	var definitions = document.getElementsByClassName("definitions");
+	var defIDs = [];
 	for(var i = 0; i < definitions.length; i++) {
 		var tmpDiv = document.getElementById(definitions[i].id);
 		tmpDiv.style.display = "none";
+		defIDs.push(definitions[i].id);
 	}
 
 	var valueDictCount = document.getElementsByClassName("valueDictCount");
@@ -17,18 +19,31 @@ document.addEventListener("DOMContentLoaded", function() {
 		valueIDs.push(valueDictCount[i].id);
 	}
 
+	var wordDictCount = document.getElementsByClassName("wordDictCount");
+	var wordIDs = [];
+	for(var i = 0; i < wordDictCount.length; i++) {
+		wordIDs.push(wordDictCount[i].id);
+	}
+
 	for(var i = 0; i < valueIDs.length; i++) {
 	  var dictId = valueIDs[i].replace("Value", "");
 		document.getElementById(valueIDs[i]).addEventListener("click", function() {
-			console.log(" CLICKED " + dictId);	
 			document.getElementById(dictId).style.display = "block";	
-		});
+			for(var j = 0; j < dupDefIDs.length; j++) {
+				document.getElementById(dupDefIDs[j]).style.dispay = 'none';
+			}
+		}); 
 	}
 
-	var wordDictCount = document.getElementsByClassName("wordDictCount");
-	for(var i = 0; i < wordDictCount.length; i++) {
-		// console.log(" id: " + wordDictCount[i].id);
-	}
+	for(var i = 0; i < wordIDs.length; i++) {
+	  var wordId = wordIDs[i].replace("Word", "");
+		document.getElementById(wordIDs[i]).addEventListener("click", function() {
+			document.getElementById(wordId).style.display = "block";	
+			for(var j = 0; j < dupDefIDs.length; j++) {
+				document.getElementById(dupDefIDs[j]).style.dispay = 'none';
+			}
+		});
+	} 
 
 	document.getElementById("alphButton").addEventListener("click", function() {
 		var alphaDiv = document.getElementById("divTwo");
