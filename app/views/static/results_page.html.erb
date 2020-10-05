@@ -15,14 +15,14 @@
 		<div id="divOne">
 			Value:<br>
 			<% @value_dict_sort.each do |word, value| %>
-				<span id="<%= word %>Value" class="valueDictCount"><%= word %></span>: <%= value[0] %><br>
+				<span id="<%= word %>Value" class="valueDictCount"><%= word %></span>: <%= value[0] %><br><br><br>
 			<% end %>
 		</div>
 
 		<div id="divTwo">
 			Alpha:<br>
 			<% @word_dict_sort.each do |word, value| %>
-				<span id="<%= word %>Word" class="wordDictCount"><%= word %></span>: <%= value[0] %><br>
+				<span id="<%= word %>Word" class="wordDictCount"><%= word %></span>: <%= value[0] %><br><br><br>
 			<% end %>
 		</div>
 	</div>
