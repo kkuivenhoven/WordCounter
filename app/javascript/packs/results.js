@@ -9,11 +9,13 @@ document.addEventListener("DOMContentLoaded", function() {
 	var definitions = document.getElementsByClassName("definitions");
 	var defIDs = [];
 	var num = [];
+	var numInner = [];
 	for(var i = 0; i < definitions.length; i++) {
 		var tmpDiv = document.getElementById(definitions[i].id);
 		tmpDiv.style.display = "none";
 		defIDs.push(definitions[i].id);
 		num.push(i);
+		numInner.push(i);
 	}
 
 
@@ -34,24 +36,26 @@ document.addEventListener("DOMContentLoaded", function() {
 	num.forEach(i => {
 		valueDictCount[i].addEventListener("click", function() {
 	  	var dictId = valueDictCount[i].id.replace("Value", "");
-			for(var j = 0; j < defIDs.length; j++) {
-				if(defIDs[j] != dictId) {
-					document.getElementById(defIDs[j]).style.dispay = 'none';
-				} else { 
-					document.getElementById(dictId).style.display = "block";	
+			numInner.forEach(j => {
+				if(definitions[j].id == dictId) {
+					document.getElementById(definitions[j].id).style.display = "block";	
 				}
-			}
+				if(definitions[j].id != dictId) {
+					document.getElementById(definitions[j].id).style.display = "none";
+				} 
+			});
 		});
 
 		wordDictCount[i].addEventListener("click", function() {
 	  	var wordId = wordDictCount[i].id.replace("Word", "");
-			for(var j = 0; j < defIDs.length; j++) {
-				if(defIDs[j] != wordId) {
-					document.getElementById(defIDs[j]).style.dispay = 'none';
-				} else { 
-					document.getElementById(wordId).style.display = "block";	
+			numInner.forEach(j => {
+				if(definitions[j].id == wordId) {
+					document.getElementById(definitions[j].id).style.display = "block";	
 				}
-			}
+				if(definitions[j].id != wordId) {
+					document.getElementById(definitions[j].id).style.display = "none";
+				} 
+			});
 		});
 	})
 
@@ -61,6 +65,7 @@ document.addEventListener("DOMContentLoaded", function() {
 		var numDiv = document.getElementById("divOne");
 		alphaDiv.style.display = "block"; 
 		numDiv.style.display = "none";  
+		hideDefinitions();
 	});	
 
 	document.getElementById("numButton").addEventListener("click", function() {
@@ -68,9 +73,32 @@ document.addEventListener("DOMContentLoaded", function() {
 		var numDiv = document.getElementById("divOne");
 		alphaDiv.style.display = "none";  
 		numDiv.style.display = "block"; 
+		hideDefinitions();
 	});	
 
 
 });
+
+
+function hideDefinitions() {
+	var definitions = document.getElementsByClassName("definitions");
+	for(var i = 0; i < definitions.length; i++) {
+		var tmpDiv = document.getElementById(definitions[i].id);
+		tmpDiv.style.display = "none";
+	}
+}
+
+
+/*
+function hideUnclickedDefinitions(var word, var dictWords) {
+	for(var j = 0; j < dictWords.length; j++) {
+		if(dictWords[j] != word) {
+			document.getElementById(dictWords[j]).style.dispay = 'none';
+		} else { 
+			document.getElementById(word).style.display = "block";	
+		}
+	}
+}
+*/
 
 
